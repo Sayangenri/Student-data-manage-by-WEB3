@@ -1,0 +1,86 @@
+Solidity ->
+pragma solidity ^0.8.17;
+
+contract StudentInfo {
+    struct Student {
+        string name;
+        string class;
+        string section;
+        uint256 roll;
+    }
+
+    mapping(address => Student) public studentData;
+
+    function setStudentData(string memory _name, string memory _class, string memory _section, uint256 _roll) public {
+        Student storage newStudent = studentData[msg.sender];
+        newStudent.name = _name;
+        newStudent.class = _class;
+        newStudent.section = _section;
+        newStudent.roll = _roll;
+    }
+}
+ABI->
+[
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_class",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_section",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_roll",
+				"type": "uint256"
+			}
+		],
+		"name": "setStudentData",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "studentData",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "class",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "section",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "roll",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
